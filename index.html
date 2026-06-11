@@ -11,9 +11,8 @@
         input { width: 100%; padding: 18px; margin-bottom: 20px; border-radius: 50px; border: none; background: #0f172a; color: white; text-align: center; }
         .btn { width: 100%; padding: 15px; margin-bottom: 10px; border-radius: 50px; border: none; cursor: pointer; font-weight: bold; color: white; text-decoration: none; display: block; text-align: center; }
         .btn-ad { background: #6366f1; margin-bottom: 20px; }
-        
-        /* Badhanada lacag bixinta oo markii hore la qarinayo */
-        .withdraw-group { display: none; }
+        /* Badhanada hadda way muuqanayaan */
+        .btn-withdraw { background: #10b981; }
     </style>
 </head>
 <body>
@@ -28,12 +27,8 @@
         
         <input type="text" id="phone" placeholder="Geli lambarkaaga ama ID-gaaga">
         
-        <div id="withdrawGroup" class="withdraw-group">
-            <button class="btn" style="background:#10b981" onclick="finalWithdraw('EVC Plus')">Withdraw EVC Plus</button>
-            <button class="btn" style="background:#ec4899" onclick="finalWithdraw('M-Pesa')">Withdraw M-Pesa</button>
-            <button class="btn" style="background:#3b82f6" onclick="finalWithdraw('Visa')">Withdraw Visa</button>
-            <button class="btn" style="background:#f59e0b" onclick="finalWithdraw('Binance')">Withdraw Binance</button>
-        </div>
+        <!-- Badhanada hadda way muuqdaan -->
+        <button class="btn btn-withdraw" onclick="finalWithdraw('EVC/M-Pesa/Visa')">Withdraw Money</button>
     </div>
 
     <script>
@@ -42,19 +37,19 @@
             let balance = parseFloat(balanceEl.innerText);
             balance += 5.50;
             balanceEl.innerText = balance.toFixed(2);
-            
-            // Hubi haddii uu gaaray $50 si loo soo bandhigo badhanada
-            if (balance >= 50) {
-                document.getElementById('withdrawGroup').style.display = 'block';
-            }
         }
 
         function finalWithdraw(method) {
+            let balance = parseFloat(document.getElementById('balance').innerText);
             let phone = document.getElementById('phone').value;
-            if (phone.length < 5) {
+
+            // Shuruudda ayaa hadda lagu hubinayaa gudaha badhanka
+            if (balance < 50) {
+                alert("Waan ka xunnahay! Lacagta ugu yar ee la bixi karo waa $50. Sii wad daawashada xayeysiiska.");
+            } else if (phone.length < 5) {
                 alert("Fadlan geli lambar sax ah.");
             } else {
-                alert("Mahadsanid! Codsigaaga " + method + " ee " + phone + " waa la gudbiyay.");
+                alert("Mahadsanid! Codsigaaga lacag bixinta waa la gudbiyay.");
             }
         }
     </script>
