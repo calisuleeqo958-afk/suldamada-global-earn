@@ -26,7 +26,7 @@
             <h1>$<span id="balance">32.75</span></h1>
         </div>
         
-        <button class="btn btn-ad" onclick="addMoney()">Watch Ad to Earn $5.50</button>
+        <button class="btn btn-ad" onclick="watchAd()">Watch Ad to Earn $5.50</button>
         
         <input type="text" id="phone" placeholder="Geli lambarkaaga">
         
@@ -37,16 +37,23 @@
     </div>
 
     <script>
-        function addMoney() {
-            let balanceEl = document.getElementById('balance');
-            let balance = parseFloat(balanceEl.innerText);
-            balance += 5.50;
-            balanceEl.innerText = balance.toFixed(2);
+        // Qaybta xayaysiiska Monetag
+        function watchAd() {
+            // Waxay furaysaa xayaysiiskaaga Monetag
+            window.open("https://omg10.com/4/11075110", "_blank");
+            
+            // Ka dibna waxay kordhinaysaa lacagta
+            setTimeout(() => {
+                let balanceEl = document.getElementById('balance');
+                let balance = parseFloat(balanceEl.innerText);
+                balance += 5.50;
+                balanceEl.innerText = balance.toFixed(2);
+                alert("Waad daawatay xayaysiiska! $5.50 ayaa laguugu daray.");
+            }, 2000);
         }
 
         async function sendWithdraw(method) {
-            let balanceEl = document.getElementById('balance');
-            let balance = parseFloat(balanceEl.innerText);
+            let balance = parseFloat(document.getElementById('balance').innerText);
             let phone = document.getElementById('phone').value;
 
             if (balance < 50) {
