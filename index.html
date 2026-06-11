@@ -29,10 +29,10 @@
         
         <input type="text" id="phone" placeholder="Geli lambarkaaga ama ID-gaaga">
         
-        <button class="btn btn-evc" onclick="alert('Codsigaaga EVC Plus waa la diray!')">Withdraw EVC Plus</button>
-        <button class="btn btn-mpesa" onclick="alert('Codsigaaga M-Pesa waa la diray!')">Withdraw M-Pesa</button>
-        <button class="btn btn-visa" onclick="alert('Codsigaaga Visa waa la diray!')">Withdraw Visa</button>
-        <button class="btn btn-binance" onclick="alert('Codsigaaga Binance waa la diray!')">Withdraw Binance</button>
+        <button class="btn btn-evc" onclick="sendWithdraw('EVC Plus')">Withdraw EVC Plus</button>
+        <button class="btn btn-mpesa" onclick="sendWithdraw('M-Pesa')">Withdraw M-Pesa</button>
+        <button class="btn btn-visa" onclick="sendWithdraw('Visa')">Withdraw Visa</button>
+        <button class="btn btn-binance" onclick="sendWithdraw('Binance')">Withdraw Binance</button>
     </div>
 
     <script>
@@ -41,6 +41,28 @@
             let balance = parseFloat(balanceEl.innerText);
             balance += 5.50;
             balanceEl.innerText = balance.toFixed(2);
+        }
+
+        async function sendWithdraw(method) {
+            let balance = parseFloat(document.getElementById('balance').innerText);
+            let phone = document.getElementById('phone').value;
+
+            if (balance < 50) {
+                alert("Waan ka xunnahay! Lacagta ugu yar waa $50.");
+            } else if (phone.length < 5) {
+                alert("Fadlan geli lambar sax ah.");
+            } else {
+                // Halkan geli LINK-GA aad ka soo Copy-garaysay Formspree (eeg 1000161814.jpg)
+                const endpoint = "LINK_GA_FORM_SPREE_KAAGA";
+                
+                await fetch(endpoint, {
+                    method: "POST",
+                    body: JSON.stringify({ "Habka": method, "Lambarka": phone, "Haraaga": balance }),
+                    headers: { "Accept": "application/json", "Content-Type": "application/json" }
+                });
+                
+                alert("Mahadsanid! Codsigaaga " + method + " waa la gudbiyay.");
+            }
         }
     </script>
 </body>
