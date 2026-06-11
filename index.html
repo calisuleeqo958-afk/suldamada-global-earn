@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suldamada Global</title>
+    <title>Suldamada Global - System</title>
+    <!-- Halkan ku dheji Script-ka xayeysiiska (Ad Network) marka aad hesho -->
     <style>
         body { background-color: #0d1117; color: white; font-family: sans-serif; display: flex; justify-content: center; padding: 20px; }
         .app-container { width: 100%; max-width: 400px; }
@@ -25,6 +27,7 @@
             <h1>$<span id="balance">27.25</span></h1>
         </div>
         
+        <!-- Xayeysiis: Halkan waxaa ka muuqan doona xayeysiiska rasmiga ah -->
         <button class="btn btn-ad" onclick="watchAd()">Watch Ad to Earn $5.50</button>
         
         <input type="text" id="phone" placeholder="Geli lambarkaaga ama ID-gaaga">
@@ -37,7 +40,9 @@
 
     <script>
         let currentBalance = 27.25;
+        
         function watchAd() {
+            // Halkan waxaa lagu beddeli karaa function-ka rasmiga ah ee xayeysiiska
             alert("Xayeysiiska waa la bilaabay, fadlan sug 3 ilbiriqsi...");
             setTimeout(() => {
                 currentBalance += 5.50;
@@ -51,7 +56,7 @@
             if (phone.length < 5) {
                 alert("Fadlan geli lambar ama ID sax ah!");
             } else {
-                alert("Mahadsanid! Codsigaaga " + method + " ee " + phone + " waa la gudbiyay.");
+                alert("Mahadsanid! Codsigaaga " + method + " ee " + phone + " waa la gudbiyay. Maamulka ayaa kula soo xiriiri doona.");
             }
         }
     </script>
