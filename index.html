@@ -1,20 +1,42 @@
 
+<!DOCTYPE html>
+<html lang="so">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suldamada Global</title>
+    <style>
+        body { background-color: #0d1117; color: #ffffff; font-family: sans-serif; display: flex; justify-content: center; padding: 20px; }
+        .app-container { width: 100%; max-width: 400px; display: flex; flex-direction: column; gap: 20px; }
+        .balance-card { background: linear-gradient(135deg, #ff5e00, #ff0055); border-radius: 16px; padding: 25px; }
+        input { padding: 10px; border-radius: 8px; border: none; margin-bottom: 10px; width: 100%; box-sizing: border-box; }
+        .btn-pay { background-color: #21262d; border: 1px solid #30363d; color: white; padding: 15px; border-radius: 8px; cursor: pointer; width: 100%; }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <h2>Suldamada Global</h2>
+        <div class="balance-card">
+            <p>Haraagaaga</p>
+            <h1>$<span id="balance">27.25</span></h1>
+        </div>
+        
+        <input type="text" id="phone" placeholder="Geli lambarkaaga ama ID-gaaga halkan">
+        
+        <div class="grid-btns">
+            <button class="btn-pay" onclick="withdraw('EVC Plus')">Bixi EVC Plus</button>
+            <button class="btn-pay" style="margin-top:10px" onclick="withdraw('Visa')">Bixi Visa</button>
+        </div>
+    </div>
     <script>
-        let balance = 27.25; // Haraagaaga hadda
-        function watchAd() {
-            alert("Hawshu wey bilaabatay...");
-            setTimeout(() => {
-                balance += 5.50;
-                document.getElementById('balance').innerText = balance.toFixed(2);
-                alert("Hambalyo! $5.50 ayaa lagu daray.");
-            }, 2000);
-        }
         function withdraw(method) {
-            let info = prompt("Fadlan geli lambarkaaga ama ID-gaaga " + method + ":");
-            if (info != null && info != "") {
-                alert("Mahadsanid! Codsigaaga " + method + " ee ah " + info + " waa la gudbiyay. Waxaan kula soo xiriiri doonaa 24 saac gudahood.");
+            let phone = document.getElementById('phone').value;
+            if (phone.length < 7) {
+                alert("Fadlan geli lambar sax ah oo dhameystiran!");
             } else {
-                alert("Fadlan geli lambar sax ah si aan lacagta kuu soo dirno.");
+                alert("Mahadsanid! Codsigaaga " + method + " ee lambarka " + phone + " waa la gudbiyay.");
             }
         }
     </script>
+</body>
+</html>
