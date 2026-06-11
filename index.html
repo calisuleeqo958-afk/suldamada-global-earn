@@ -1,40 +1,36 @@
 
 <!DOCTYPE html>
-<html lang="so">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suldamada Global</title>
     <style>
-        body { background-color: #0d1117; color: #ffffff; font-family: sans-serif; display: flex; justify-content: center; padding: 20px; }
-        .app-container { width: 100%; max-width: 400px; display: flex; flex-direction: column; gap: 20px; }
-        .balance-card { background: linear-gradient(135deg, #ff5e00, #ff0055); border-radius: 16px; padding: 25px; }
-        input { padding: 10px; border-radius: 8px; border: none; margin-bottom: 10px; width: 100%; box-sizing: border-box; }
-        .btn-pay { background-color: #21262d; border: 1px solid #30363d; color: white; padding: 15px; border-radius: 8px; cursor: pointer; width: 100%; }
+        body { background-color: #0d1117; color: white; font-family: sans-serif; display: flex; justify-content: center; padding: 20px; }
+        .app-container { width: 100%; max-width: 400px; }
+        .balance-card { background: linear-gradient(135deg, #ff5e00, #ff0055); padding: 20px; border-radius: 15px; margin-bottom: 20px; }
+        input { width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: none; box-sizing: border-box; }
+        button { width: 100%; padding: 15px; margin-top: 10px; border-radius: 8px; border: none; cursor: pointer; background: #21262d; color: white; }
     </style>
 </head>
 <body>
     <div class="app-container">
         <h2>Suldamada Global</h2>
         <div class="balance-card">
-            <p>Haraagaaga</p>
+            <p>Balance</p>
             <h1>$<span id="balance">27.25</span></h1>
         </div>
-        
-        <input type="text" id="phone" placeholder="Geli lambarkaaga ama ID-gaaga halkan">
-        
-        <div class="grid-btns">
-            <button class="btn-pay" onclick="withdraw('EVC Plus')">Bixi EVC Plus</button>
-            <button class="btn-pay" style="margin-top:10px" onclick="withdraw('Visa')">Bixi Visa</button>
-        </div>
+        <input type="text" id="phone" placeholder="Enter your phone number">
+        <button onclick="withdraw('EVC Plus')">Withdraw EVC Plus</button>
+        <button onclick="withdraw('Visa')">Withdraw Visa</button>
     </div>
+
     <script>
         function withdraw(method) {
             let phone = document.getElementById('phone').value;
             if (phone.length < 7) {
-                alert("Fadlan geli lambar sax ah oo dhameystiran!");
+                alert("Please enter a valid phone number!");
             } else {
-                alert("Mahadsanid! Codsigaaga " + method + " ee lambarka " + phone + " waa la gudbiyay.");
+                alert("Success! Your " + method + " withdrawal request for " + phone + " has been submitted.");
             }
         }
     </script>
