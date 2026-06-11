@@ -1,71 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suldamada Global</title>
-    <style>
-        body { background: #0f172a; color: white; font-family: sans-serif; display: flex; justify-content: center; padding: 20px; margin: 0; }
-        .app-container { width: 100%; max-width: 400px; background: #1e293b; padding: 25px; border-radius: 30px; }
-        .balance-card { background: linear-gradient(135deg, #f59e0b, #ec4899); padding: 30px; border-radius: 25px; text-align: center; margin-bottom: 25px; }
-        input { width: 100%; padding: 18px; margin-bottom: 20px; border-radius: 50px; border: none; background: #0f172a; color: white; text-align: center; box-sizing: border-box; }
-        .btn { width: 100%; padding: 15px; margin-bottom: 10px; border-radius: 50px; border: none; cursor: pointer; font-weight: bold; color: white; text-decoration: none; display: block; text-align: center; }
-        .btn-ad { background: #6366f1; margin-bottom: 20px; }
-        .btn-evc { background: #10b981; }
-        .btn-mpesa { background: #ec4899; }
-        .btn-visa { background: #3b82f6; }
-        .btn-binance { background: #f59e0b; }
-    </style>
-</head>
-<body>
-    <div class="app-container">
-        <h2 style="text-align:center">Suldamada Global</h2>
-        <div class="balance-card">
-            <p>Haraagaaga</p>
-            <h1>$<span id="balance">32.75</span></h1>
-        </div>
-        
-        <button class="btn btn-ad" onclick="addMoney()">Watch Ad to Earn $5.50</button>
-        
-        <input type="text" id="phone" placeholder="Geli lambarkaaga ama ID-gaaga">
-        
-        <button class="btn btn-evc" onclick="sendWithdraw('EVC Plus')">Withdraw EVC Plus</button>
-        <button class="btn btn-mpesa" onclick="sendWithdraw('M-Pesa')">Withdraw M-Pesa</button>
-        <button class="btn btn-visa" onclick="sendWithdraw('Visa')">Withdraw Visa</button>
-        <button class="btn btn-binance" onclick="sendWithdraw('Binance')">Withdraw Binance</button>
-    </div>
 
-    <script>
-        function addMoney() {
-            let balanceEl = document.getElementById('balance');
-            let balance = parseFloat(balanceEl.innerText);
-            balance += 5.50;
-            balanceEl.innerText = balance.toFixed(2);
-        }
+<script>
+    function addMoney() {
+        let balanceEl = document.getElementById('balance');
+        let balance = parseFloat(balanceEl.innerText);
+        balance += 5.50;
+        balanceEl.innerText = balance.toFixed(2);
+    }
 
-        async function sendWithdraw(method) {
-            let balance = parseFloat(document.getElementById('balance').innerText);
-            let phone = document.getElementById('phone').value;
+    async function sendWithdraw(method) {
+        let balance = parseFloat(document.getElementById('balance').innerText);
+        let phone = document.getElementById('phone').value;
 
-            if (balance < 50) {
-                alert("Waan ka xunnahay! Lacagta ugu yar waa $50.");
-            } else if (phone.length < 5) {
-                alert("Fadlan geli lambar sax ah.");
-            } else {
-                // Halkan geli LINK-GA aad ka soo Copy-garaysay Formspree (eeg 1000161814.jpg)
-                const endpoint = "https://hook.eu1.make.com/5a5xrq0pc9dmmne8nna40wdg26ud4o41";
-
-        
-                
+        if (balance < 50) {
+            alert("Waan ka xunnahay! Lacagta ugu yar waa $50.");
+        } else if (phone.length < 5) {
+            alert("Fadlan geli lambar sax ah.");
+        } else {
+            const endpoint = "https://hook.eu1.make.com/5a5xrq0pc9dmmne8nna40wdg26ud4o41";
+            
+            try {
                 await fetch(endpoint, {
                     method: "POST",
-                    body: JSON.stringify({ "Habka": method, "Lambarka": phone, "Haraaga": balance }),
-                    headers: { "Accept": "application/json", "Content-Type": "application/json" }
+                    body: JSON.stringify({ 
+                        "Habka": method, 
+                        "Lambarka": phone, 
+                        "Haraaga": balance 
+                    }),
+                    headers: { "Content-Type": "application/json" }
                 });
-                
                 alert("Mahadsanid! Codsigaaga " + method + " waa la gudbiyay.");
+            } catch (error) {
+                alert("Waxbaa khaldamay, fadlan isku day markale.");
             }
         }
-    </script>
-</body>
-</html>
+    }
+</script>
