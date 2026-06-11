@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,28 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suldamada Global</title>
     <style>
-        body { background-color: #050505; color: #ffffff; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
-        .app-container { width: 90%; max-width: 400px; background: #18181b; padding: 25px; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center; border: 1px solid #333; }
-        .balance-card { background: linear-gradient(135deg, #6366f1, #a855f7); padding: 25px; border-radius: 20px; margin-bottom: 25px; }
-        .balance-val { font-size: 2.5rem; font-weight: bold; margin: 10px 0; }
-        input { width: 100%; padding: 15px; margin-bottom: 20px; border-radius: 12px; border: none; background: #27272a; color: white; text-align: center; box-sizing: border-box; }
-        .btn { width: 100%; padding: 15px; margin-bottom: 12px; border-radius: 12px; border: none; cursor: pointer; font-weight: 600; color: white; transition: 0.3s; }
-        .btn-game { background: #3b82f6; }
-        .btn-ad { background: #8b5cf6; }
-        .btn-withdraw { background: #10b981; }
-        .btn:active { transform: scale(0.95); }
+        body { background: #000; color: white; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .app-container { width: 90%; max-width: 400px; background: rgba(20, 20, 20, 0.8); padding: 30px; border-radius: 35px; border: 1px solid #444; backdrop-filter: blur(15px); text-align: center; box-shadow: 0 0 40px rgba(99, 102, 241, 0.2); }
+        .balance-card { background: linear-gradient(135deg, #4f46e5, #ec4899); padding: 30px; border-radius: 25px; margin-bottom: 25px; box-shadow: 0 0 20px rgba(99, 102, 241, 0.4); }
+        .balance-val { font-size: 3rem; font-weight: 800; }
+        .btn { width: 100%; padding: 18px; margin-bottom: 15px; border-radius: 20px; border: none; cursor: pointer; font-weight: bold; color: white; transition: 0.4s; box-shadow: 0 0 15px rgba(0,0,0,0.3); }
+        .btn-game { background: #2563eb; }
+        .btn-game:hover { background: #3b82f6; box-shadow: 0 0 20px #3b82f6; }
+        .btn-ad { background: #7c3aed; }
+        .btn-ad:hover { background: #8b5cf6; box-shadow: 0 0 20px #8b5cf6; }
+        .btn-withdraw { background: #059669; }
+        .btn-withdraw:hover { background: #10b981; box-shadow: 0 0 20px #10b981; }
+        input { width: 100%; padding: 18px; margin-bottom: 20px; border-radius: 20px; border: 1px solid #444; background: #111; color: white; text-align: center; box-sizing: border-box; }
     </style>
 </head>
 <body>
     <div class="app-container">
-        <h2 style="margin-top:0">Suldamada Global</h2>
+        <h2 style="margin-bottom: 20px;">Suldamada Global</h2>
         <div class="balance-card">
             <p style="margin:0; opacity:0.8">Haraagaaga</p>
             <div class="balance-val">$<span id="balance">32.75</span></div>
         </div>
         
         <button class="btn btn-game" onclick="playGame()">🎮 Play Game & Win $8.50</button>
-        <button class="btn btn-ad" id="adBtn" onclick="watchAd()">📺 Watch Ad & Earn $5.50</button>
+        <button class="btn btn-ad" onclick="watchAd()">📺 Watch Ad & Earn $5.50</button>
         
         <input type="text" id="phone" placeholder="Geli lambarkaaga">
         
@@ -36,19 +37,17 @@
 
     <script>
         function playGame() {
-            alert("Ciyaartu way socotaa... Fadlan sug natiijada!");
+            alert("Ciyaartu way socotaa...");
             setTimeout(() => {
-                // Fursad 40% ah inuu guulaysto
                 if (Math.random() > 0.6) {
                     let b = document.getElementById('balance');
                     b.innerText = (parseFloat(b.innerText) + 8.50).toFixed(2);
-                    alert("Hambalyo! Waxaad ku guulaysatay $8.50!");
+                    alert("Hambalyo! $8.50 ayaa laguugu daray!");
                 } else {
                     alert("Nasiib xumo! Ciyaartii waa lagaa adkaaday.");
                 }
-            }, 3000);
+            }, 2000);
         }
-
         function watchAd() {
             window.open("https://omg10.com/4/11075110", "_blank");
             setTimeout(() => {
@@ -57,15 +56,10 @@
                 alert("Waad daawatay! $5.50 ayaa laguugu daray.");
             }, 10000);
         }
-
-        async function sendWithdraw() {
-            let b = document.getElementById('balance').innerText;
-            let p = document.getElementById('phone').value;
-            if (parseFloat(b) < 50) { alert("Waa inaad gaartaa ugu yaraan $50 si aad lacag ula baxdo."); return; }
-            if (p.length < 5) { alert("Fadlan geli lambar sax ah."); return; }
-            
-            // Halkan waxaad ku xiri kartaa Webhook-gaaga Make.com haddii aad rabto
-            alert("Mahadsanid! Codsigaaga $" + b + " lambarka " + p + " waa la gudbiyay. Waxaan kula soo xiriiri doonaa 24 saac gudahood.");
+        function sendWithdraw() {
+            let b = parseFloat(document.getElementById('balance').innerText);
+            if (b < 50) { alert("Waa inaad gaartaa $50!"); return; }
+            alert("Codsigaaga waa la diray.");
         }
     </script>
 </body>
