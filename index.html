@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suldamada Global</title>
     <style>
-        body { background: #050505; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        body { background-color: #050505; color: #ffffff; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
         .app-container { width: 90%; max-width: 400px; background: #18181b; padding: 25px; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center; border: 1px solid #333; }
         .balance-card { background: linear-gradient(135deg, #6366f1, #a855f7); padding: 25px; border-radius: 20px; margin-bottom: 25px; }
         .balance-val { font-size: 2.5rem; font-weight: bold; margin: 10px 0; }
@@ -14,11 +15,12 @@
         .btn-game { background: #3b82f6; }
         .btn-ad { background: #8b5cf6; }
         .btn-withdraw { background: #10b981; }
+        .btn:active { transform: scale(0.95); }
     </style>
 </head>
 <body>
     <div class="app-container">
-        <h2>Suldamada Global</h2>
+        <h2 style="margin-top:0">Suldamada Global</h2>
         <div class="balance-card">
             <p style="margin:0; opacity:0.8">Haraagaaga</p>
             <div class="balance-val">$<span id="balance">32.75</span></div>
@@ -36,6 +38,7 @@
         function playGame() {
             alert("Ciyaartu way socotaa... Fadlan sug natiijada!");
             setTimeout(() => {
+                // Fursad 40% ah inuu guulaysto
                 if (Math.random() > 0.6) {
                     let b = document.getElementById('balance');
                     b.innerText = (parseFloat(b.innerText) + 8.50).toFixed(2);
@@ -58,9 +61,11 @@
         async function sendWithdraw() {
             let b = document.getElementById('balance').innerText;
             let p = document.getElementById('phone').value;
-            if (parseFloat(b) < 50) { alert("Waa inaad gaartaa $50 si aad lacag ula baxdo."); return; }
+            if (parseFloat(b) < 50) { alert("Waa inaad gaartaa ugu yaraan $50 si aad lacag ula baxdo."); return; }
             if (p.length < 5) { alert("Fadlan geli lambar sax ah."); return; }
-            alert("Codsigaaga $" + b + " lambarka " + p + " waa la gudbiyay.");
+            
+            // Halkan waxaad ku xiri kartaa Webhook-gaaga Make.com haddii aad rabto
+            alert("Mahadsanid! Codsigaaga $" + b + " lambarka " + p + " waa la gudbiyay. Waxaan kula soo xiriiri doonaa 24 saac gudahood.");
         }
     </script>
 </body>
