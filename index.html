@@ -1,50 +1,54 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suldamada Global</title>
     <style>
-        body { background: #0f172a; color: white; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; padding: 20px; margin: 0; }
-        .app-container { width: 100%; max-width: 400px; background: #1e293b; padding: 25px; border-radius: 30px; border: 2px solid #334155; }
-        .balance-card { background: linear-gradient(135deg, #f59e0b, #ec4899); padding: 30px; border-radius: 25px; text-align: center; margin-bottom: 25px; box-shadow: 0 10px 15px rgba(0,0,0,0.2); }
-        input { width: 100%; padding: 18px; margin-bottom: 20px; border-radius: 50px; border: none; background: #0f172a; color: white; text-align: center; box-sizing: border-box; outline: none; }
-        .btn { width: 100%; padding: 18px; margin-bottom: 12px; border-radius: 50px; border: none; cursor: pointer; font-weight: bold; color: white; transition: 0.3s; text-decoration: none; display: block; text-align: center; font-size: 15px; }
-        .btn:active { transform: scale(0.95); }
-        .btn-ad { background: linear-gradient(to right, #6366f1, #a855f7); color: white; }
-        .btn-evc { background: #10b981; }
-        .btn-mpesa { background: #ec4899; }
-        .btn-visa { background: #3b82f6; }
-        .btn-binance { background: #f59e0b; }
+        body { background: #0f172a; color: white; font-family: sans-serif; display: flex; justify-content: center; padding: 20px; margin: 0; }
+        .app-container { width: 100%; max-width: 400px; background: #1e293b; padding: 25px; border-radius: 30px; }
+        .balance-card { background: linear-gradient(135deg, #f59e0b, #ec4899); padding: 30px; border-radius: 25px; text-align: center; margin-bottom: 25px; }
+        input { width: 100%; padding: 18px; margin-bottom: 20px; border-radius: 50px; border: none; background: #0f172a; color: white; text-align: center; box-sizing: border-box; }
+        .btn { width: 100%; padding: 18px; margin-bottom: 12px; border-radius: 50px; border: none; cursor: pointer; font-weight: bold; color: white; text-decoration: none; display: block; text-align: center; }
+        .btn-ad { background: #6366f1; }
+        .btn-withdraw { background: #10b981; }
     </style>
 </head>
 <body>
     <div class="app-container">
-        <h2 style="text-align:center; margin-top:0;">Suldamada Global</h2>
+        <h2 style="text-align:center">Suldamada Global</h2>
         <div class="balance-card">
-            <p style="margin:0; opacity: 0.9;">Haraagaaga</p>
-            <!-- Halkan ayaan haraaga ka dhignay mid isbedeli kara -->
-            <h1 style="margin: 10px 0 0 0;">$<span id="balance">32.75</span></h1>
+            <p>Haraagaaga</p>
+            <h1>$<span id="balance">32.75</span></h1>
         </div>
         
-        <!-- Halkan marka la riixo, wuxuu furayaa xayeysiiska + kordhinayaa lacagta -->
-        <a href="https://omg10.com/4/11075110" target="_blank" class="btn btn-ad" onclick="addMoney()">🚀 Watch Ad to Earn $5.50</a>
+        <a href="https://omg10.com/4/11075110" target="_blank" class="btn btn-ad" onclick="addMoney()">Watch Ad to Earn $5.50</a>
         
-        <input type="text" id="phone" placeholder="Geli lambarkaaga ama ID-gaaga">
+        <input type="text" id="phone" placeholder="Geli lambarkaaga">
         
-        <button class="btn btn-evc" onclick="alert('Codsigaaga waa la gudbiyay')">Withdraw EVC Plus</button>
-        <button class="btn btn-mpesa" onclick="alert('Codsigaaga waa la gudbiyay')">Withdraw M-Pesa</button>
-        <button class="btn btn-visa" onclick="alert('Codsigaaga waa la gudbiyay')">Withdraw Visa</button>
-        <button class="btn btn-binance" onclick="alert('Codsigaaga waa la gudbiyay')">Withdraw Binance Pay</button>
+        <button class="btn btn-withdraw" onclick="checkWithdraw()">Withdraw Money</button>
     </div>
 
     <script>
         function addMoney() {
-            let balanceElement = document.getElementById('balance');
-            let currentBalance = parseFloat(balanceElement.innerText);
-            let newBalance = currentBalance + 5.50;
-            balanceElement.innerText = newBalance.toFixed(2);
-            alert("Hambalyo! $5.50 ayaa lagu daray haraagaaga.");
+            let balanceEl = document.getElementById('balance');
+            let balance = parseFloat(balanceEl.innerText);
+            balance += 5.50;
+            balanceEl.innerText = balance.toFixed(2);
+        }
+
+        function checkWithdraw() {
+            let balance = parseFloat(document.getElementById('balance').innerText);
+            let phone = document.getElementById('phone').value;
+
+            // Halkan ayaan ku xirnay lacagta:
+            if (balance < 50) {
+                alert("Waan ka xunnahay! Lacagta ugu yar ee la bixi karo waa $50. Sii wad daawashada xayeysiiska.");
+            } else if (phone.length < 5) {
+                alert("Fadlan geli lambar sax ah.");
+            } else {
+                alert("Hambalyo! Codsigaaga lacag bixinta waa la gudbiyay.");
+            }
         }
     </script>
 </body>
