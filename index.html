@@ -1,23 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suldamada Global</title>
+    <style>
+        body { background: #0f172a; color: white; font-family: sans-serif; display: flex; justify-content: center; padding: 20px; margin: 0; }
+        .app-container { width: 100%; max-width: 400px; background: #1e293b; padding: 25px; border-radius: 30px; text-align: center; }
+        .balance-card { background: linear-gradient(135deg, #f59e0b, #ec4899); padding: 30px; border-radius: 25px; text-align: center; margin-bottom: 25px; }
+        input { width: 100%; padding: 18px; margin-bottom: 20px; border-radius: 50px; border: none; background: #0f172a; color: white; text-align: center; }
+        .btn { width: 100%; padding: 15px; margin-bottom: 10px; border-radius: 50px; border: none; cursor: pointer; font-weight: bold; color: white; display: block; }
+        .btn-game { background: #2563eb; }
+        .btn-ad { background: #6366f1; }
+        .btn-withdraw { background: #10b981; }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <h2>Suldamada Global</h2>
+        <div class="balance-card">
+            <p>Haraagaaga</p>
+            <h1>$<span id="balance">32.75</span></h1>
+        </div>
+        
+        <button class="btn btn-game" onclick="playGame()">Play Game (Chance to win $8.50)</button>
+        <button class="btn btn-ad" id="adBtn" onclick="watchAd()">Watch 15s Ad & Earn $5.50</button>
+        <input type="text" id="phone" placeholder="Geli lambarkaaga">
+        <button class="btn btn-withdraw" onclick="sendWithdraw()">Withdraw Now</button>
+    </div>
 
+    <script>
         function playGame() {
-            // Qofku wuxuu rabaa inuu ciyaaro
-            alert("Game-ka wuu socdaa... Fadlan sug natiijada...");
-            
-            // Waxaan ka dhigaynaa ciyaartu inay qaadato 5 ilbiriqsi
+            alert("Game-ka wuu socdaa... Fadlan sug 5 ilbiriqsi...");
             setTimeout(() => {
-                // Waxaan samaynaynaa fursad (Chance)
-                // 40% inuu helo $8.50, 60% inuu helo $0 (in laga badiyo)
-                let winChance = Math.random(); 
                 let balEl = document.getElementById('balance');
                 let currentBal = parseFloat(balEl.innerText);
-
-                if (winChance > 0.6) {
-                    let reward = 8.50;
-                    currentBal += reward;
+                if (Math.random() > 0.6) {
+                    currentBal += 8.50;
                     balEl.innerText = currentBal.toFixed(2);
                     alert("Hambalyo! Waxaad ku guulaysatay $8.50!");
                 } else {
-                    alert("Waan ka xunnahay! Ciyaartii waa lagaa adkaaday, waxba maadan helin.");
+                    alert("Waan ka xunnahay! Ciyaartii waa lagaa adkaaday.");
                 }
-            }, 5000); // 5 ilbiriqsi
+            }, 5000);
         }
+
+        function watchAd() {
+            window.open("https://omg10.com/4/11075110", "_blank");
+            setTimeout(() => {
+                let balEl = document.getElementById('balance');
+                balEl.innerText = (parseFloat(balEl.innerText) + 5.50).toFixed(2);
+                alert("Waad daawatay xayaysiiska! $5.50 ayaa laguugu daray.");
+            }, 15000);
+        }
+
+        async function sendWithdraw() {
+            let b = document.getElementById('balance').innerText;
+            let p = document.getElementById('phone').value;
+            if (parseFloat(b) < 50) { alert("Waan ka xunnahay! Lacagta ugu yar waa $50."); return; }
+            alert("Codsigaga $" + b + " lambarka " + p + " waa la gudbiyay.");
+        }
+    </script>
+</body>
+</html>
