@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="so">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suldamada Global</title>
+    <style>
+        body { background-color: #0d1117; color: #ffffff; font-family: sans-serif; display: flex; justify-content: center; padding: 20px; }
+        .app-container { width: 100%; max-width: 400px; display: flex; flex-direction: column; gap: 20px; }
+        .balance-card { background: linear-gradient(135deg, #ff5e00, #ff0055); border-radius: 16px; padding: 25px; }
+        .task-card { background-color: #161b22; padding: 20px; border-radius: 16px; display: flex; justify-content: space-between; align-items: center; }
+        .btn-green { background-color: #008037; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; }
+        .grid-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .btn-pay { background-color: #21262d; border: 1px solid #30363d; color: white; padding: 15px; border-radius: 8px; cursor: pointer; }
+        .btn-binance { grid-column: span 2; background-color: #78350f; color: #fbbf24; padding: 15px; border-radius: 8px; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <h2>Suldamada Global</h2>
+        <div class="balance-card">
+            <p>Haraagaaga</p>
+            <h1>$<span id="balance">32.75</span></h1>
+        </div>
+        <div class="task-card">
+            <div><p>Daawashada Xayeysiiska</p></div>
+            <button class="btn-green" onclick="watchAd()">Daawashada</button>
+        </div>
+        <div class="grid-btns">
+            <button class="btn-pay" onclick="withdraw('EVC Plus')">EVC Plus</button>
+            <button class="btn-pay" onclick="withdraw('Visa')">Visa</button>
+            <button class="btn-binance" onclick="withdraw('Binance Pay')">Binance Pay</button>
+        </div>
+    </div>
+    <script>
+        let balance = 32.75;
+        function watchAd() {
+            alert("Hawshu wey bilaabatay... fadlan sug.");
+            setTimeout(() => {
+                balance += 5.50;
+                document.getElementById('balance').innerText = balance.toFixed(2);
+                alert("Hambalyo! $5.50 ayaa lagu daray haraagaaga.");
+            }, 2000);
+        }
+        function withdraw(method) {
+            alert("Codsigaaga bixitaanka ee " + method + " waa la gudbiyay!");
+        }
+    </script>
+</body>
+</html>
+
