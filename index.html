@@ -1,14 +1,40 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suldamada Global</title>
+    <style>
+        body { background-color: #0d1117; color: white; font-family: sans-serif; display: flex; justify-content: center; padding: 20px; }
+        .app-container { width: 100%; max-width: 400px; }
+        .balance-card { background: linear-gradient(135deg, #ff5e00, #ff0055); padding: 25px; border-radius: 16px; margin-bottom: 20px; text-align: center; }
+        input { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #333; background: #161b22; color: white; box-sizing: border-box; }
+        .btn { width: 100%; padding: 15px; margin-bottom: 10px; border-radius: 8px; border: none; cursor: pointer; font-weight: bold; }
+        .btn-evc { background: #008037; color: white; }
+        .btn-visa { background: #1e3a8a; color: white; }
+    </style>
+</head>
 <body>
-    <h2>Suldamada Global</h2>
-    <div style="background:orange; padding:20px; border-radius:10px;">
-        <p>Balance: $27.25</p>
+    <div class="app-container">
+        <h2>Suldamada Global</h2>
+        <div class="balance-card">
+            <p>Haraagaaga</p>
+            <h1>$<span id="balance">27.25</span></h1>
+        </div>
+        <input type="text" id="phone" placeholder="Geli lambarkaaga halkan">
+        <button class="btn btn-evc" onclick="withdraw('EVC Plus')">Withdraw EVC Plus</button>
+        <button class="btn btn-visa" onclick="withdraw('Visa')">Withdraw Visa</button>
     </div>
-    <br>
-    <input type="text" id="phone" placeholder="Geli lambarkaaga">
-    <br><br>
-    <button onclick="alert('Codsigaaga EVC Plus waa la gudbiyay!')" style="padding:20px; width:100%;">Withdraw EVC Plus</button>
+
+    <script>
+        function withdraw(method) {
+            let phone = document.getElementById('phone').value;
+            if (phone.length < 7) {
+                alert("Fadlan geli lambar sax ah!");
+            } else {
+                alert("Mahadsanid! Codsigaaga " + method + " ee lambarka " + phone + " waa la gudbiyay.");
+            }
+        }
+    </script>
 </body>
 </html>
