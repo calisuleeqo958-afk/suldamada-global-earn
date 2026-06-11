@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,9 +10,11 @@
         .app-container { width: 100%; max-width: 400px; }
         .balance-card { background: linear-gradient(135deg, #ff5e00, #ff0055); padding: 25px; border-radius: 16px; margin-bottom: 20px; text-align: center; }
         input { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #333; background: #161b22; color: white; box-sizing: border-box; }
-        .btn { width: 100%; padding: 15px; margin-bottom: 10px; border-radius: 8px; border: none; cursor: pointer; font-weight: bold; }
-        .btn-evc { background: #008037; color: white; }
-        .btn-visa { background: #1e3a8a; color: white; }
+        .btn { width: 100%; padding: 15px; margin-bottom: 10px; border-radius: 8px; border: none; cursor: pointer; font-weight: bold; color: white; }
+        .btn-evc { background: #008037; }
+        .btn-mpesa { background: #4caf50; }
+        .btn-visa { background: #1e3a8a; }
+        .btn-binance { background: #f59e0b; }
     </style>
 </head>
 <body>
@@ -21,18 +24,21 @@
             <p>Haraagaaga</p>
             <h1>$<span id="balance">27.25</span></h1>
         </div>
-        <input type="text" id="phone" placeholder="Geli lambarkaaga halkan">
+        <input type="text" id="phone" placeholder="Geli lambarkaaga ama ID-gaaga">
+        
         <button class="btn btn-evc" onclick="withdraw('EVC Plus')">Withdraw EVC Plus</button>
+        <button class="btn btn-mpesa" onclick="withdraw('M-Pesa Kenya')">Withdraw M-Pesa</button>
         <button class="btn btn-visa" onclick="withdraw('Visa')">Withdraw Visa</button>
+        <button class="btn btn-binance" onclick="withdraw('Binance Pay')">Withdraw Binance Pay</button>
     </div>
 
     <script>
         function withdraw(method) {
             let phone = document.getElementById('phone').value;
-            if (phone.length < 7) {
-                alert("Fadlan geli lambar sax ah!");
+            if (phone.length < 5) {
+                alert("Fadlan geli lambar ama ID sax ah!");
             } else {
-                alert("Mahadsanid! Codsigaaga " + method + " ee lambarka " + phone + " waa la gudbiyay.");
+                alert("Mahadsanid! Codsigaaga " + method + " ee " + phone + " waa la gudbiyay.");
             }
         }
     </script>
