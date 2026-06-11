@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,13 +8,12 @@
         body { background: #0f172a; color: white; font-family: sans-serif; display: flex; justify-content: center; padding: 20px; margin: 0; }
         .app-container { width: 100%; max-width: 400px; background: #1e293b; padding: 25px; border-radius: 30px; }
         .balance-card { background: linear-gradient(135deg, #f59e0b, #ec4899); padding: 30px; border-radius: 25px; text-align: center; margin-bottom: 25px; }
-        input { width: 100%; padding: 18px; margin-bottom: 20px; border-radius: 50px; border: none; background: #0f172a; color: white; text-align: center; box-sizing: border-box; }
+        input { width: 100%; padding: 18px; margin-bottom: 20px; border-radius: 50px; border: none; background: #0f172a; color: white; text-align: center; }
         .btn { width: 100%; padding: 15px; margin-bottom: 10px; border-radius: 50px; border: none; cursor: pointer; font-weight: bold; color: white; text-decoration: none; display: block; text-align: center; }
         .btn-ad { background: #6366f1; margin-bottom: 20px; }
-        .btn-evc { background: #10b981; }
-        .btn-mpesa { background: #ec4899; }
-        .btn-visa { background: #3b82f6; }
-        .btn-binance { background: #f59e0b; }
+        
+        /* Badhanada lacag bixinta oo markii hore la qarinayo */
+        .withdraw-group { display: none; }
     </style>
 </head>
 <body>
@@ -28,11 +28,12 @@
         
         <input type="text" id="phone" placeholder="Geli lambarkaaga ama ID-gaaga">
         
-        <!-- Badhanada Lacag Bixinta -->
-        <button class="btn btn-evc" onclick="checkWithdraw('EVC Plus')">Withdraw EVC Plus</button>
-        <button class="btn btn-mpesa" onclick="checkWithdraw('M-Pesa')">Withdraw M-Pesa</button>
-        <button class="btn btn-visa" onclick="checkWithdraw('Visa')">Withdraw Visa</button>
-        <button class="btn btn-binance" onclick="checkWithdraw('Binance')">Withdraw Binance</button>
+        <div id="withdrawGroup" class="withdraw-group">
+            <button class="btn" style="background:#10b981" onclick="finalWithdraw('EVC Plus')">Withdraw EVC Plus</button>
+            <button class="btn" style="background:#ec4899" onclick="finalWithdraw('M-Pesa')">Withdraw M-Pesa</button>
+            <button class="btn" style="background:#3b82f6" onclick="finalWithdraw('Visa')">Withdraw Visa</button>
+            <button class="btn" style="background:#f59e0b" onclick="finalWithdraw('Binance')">Withdraw Binance</button>
+        </div>
     </div>
 
     <script>
@@ -41,16 +42,17 @@
             let balance = parseFloat(balanceEl.innerText);
             balance += 5.50;
             balanceEl.innerText = balance.toFixed(2);
+            
+            // Hubi haddii uu gaaray $50 si loo soo bandhigo badhanada
+            if (balance >= 50) {
+                document.getElementById('withdrawGroup').style.display = 'block';
+            }
         }
 
-        function checkWithdraw(method) {
-            let balance = parseFloat(document.getElementById('balance').innerText);
+        function finalWithdraw(method) {
             let phone = document.getElementById('phone').value;
-
-            if (balance < 50) {
-                alert("Waan ka xunnahay! Lacagta ugu yar ee la bixi karo waa $50. Sii wad daawashada xayeysiiska.");
-            } else if (phone.length < 5) {
-                alert("Fadlan geli lambar ama ID sax ah.");
+            if (phone.length < 5) {
+                alert("Fadlan geli lambar sax ah.");
             } else {
                 alert("Mahadsanid! Codsigaaga " + method + " ee " + phone + " waa la gudbiyay.");
             }
