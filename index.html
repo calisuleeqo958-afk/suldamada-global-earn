@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+<html lang="so">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suldamada Global - TaskEarn</title>
+    <script src="https://cdn.jsdelivr.net/npm/lucide-static@0.300.0/lib/lucide.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        body {
+            background-color: #0d1117;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .app-container {
+            width: 100%;
+            max-width: 450px;
+            background-color: #0b0e14;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+            padding-bottom: 80px;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 10px;
+        }
+        .avatar {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #ff9900, #ff5500);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+            box-shadow: 0 4px 10px rgba(255, 115, 0, 0.3);
+        }
+        .user-info h2 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .user-info p {
+            font-size: 12px;
+            color: #8b949e;
+        }
+        .balance-card {
+            background: linear-gradient(135deg, #ff7300, #fe0051);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: left;
+            box-shadow: 0 8px 20px rgba(254, 0, 81, 0.25);
+        }
+        .balance-card p {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 5px;
+        }
+        .balance-card h1 {
+            font-size: 36px;
+            font-weight: 800;
+        }
+        .balance-card .wallet-type {
+            font-size: 12px;
+            margin-top: 5px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .section-title {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #8b949e;
+            margin-bottom: 5px;
+        }
+        .task-card {
+            background-color: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .task-details p:first-child {
+            font-size: 11px;
+            color: #00ffaa;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        .task-details h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .task-details p:last-child {
+            font-size: 12px;
+            color: #8b949e;
+        }
+        .btn-action {
+            background: linear-gradient(135deg, #00cc88, #00a370);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-action:active {
+            transform: scale(0.95);
+        }
+        .payment-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .payment-method {
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: 0.2s;
+        }
+        .payment-method:active {
+            transform: scale(0.97);
+        }
+        .payment-method i {
+            font-size: 24px;
+        }
+        .payment-method span {
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .p-hormuud { background-color: #00875a; }
+        .p-mpesa { background-color: #e11d48; }
+        .p-card { background-color: #2563eb; }
+        .p-paypal { background-color: #0284c7; }
+        .p-binance { background-color: #d97706; grid-column: span 2; }
+        
+        .nav-bar {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 450px;
+            background-color: #0d1117;
+            border-top: 1px solid #21262d;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            z-index: 100;
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #8b949e;
+            font-size: 11px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .nav-item.active {
+            color: #ff7300;
+        }
+        .nav-item i {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="avatar">S</div>
+            <div class="user-info">
+                <h2>Suldamada Global</h2>
+                <p>TaskEarn - Global</p>
+            </div>
+        </div>
+
+        <!-- Balance Card -->
+        <div class="balance-card">
+            <p>Hadhaaga Akoonkaaga</p>
+            <h1 id="balance-text">$21.75</h1>
+            <div class="wallet-type">USD · Global Wallet</div>
+        </div>
+
+        <!-- Daily Tasks -->
+        <div>
+            <div class="section-title">Hawlaha Maalinlaha</div>
+            <div class="task-card">
+                <div class="task-details">
+                    <p>+$5.50</p>
+                    <h3>Daawashada Xayeysiiska</h3>
+                    <p>Daawo muuqaalka 30-sekend si aad u kasbato lacag.</p>
+                </div>
+                <button class="btn-action" onclick="watchAd()">Daawo</button>
+            </div>
+        </div>
+
+        <!-- Payment Methods -->
+        <div>
+            <div class="section-title" style="display: flex; justify-content: space-between;">
+                <span>Bixinta Lacagta</span>
+                <span style="font-size: 11px; text-transform: none;">Ugu yaraan $10.00</span>
+            </div>
+            <div class="payment-grid">
+                <div class="payment-method p-hormuud" onclick="withdraw('Hormuud (EVC Plus)')">
+                    <i class="lucide-smartphone"></i>
+                    <span>Hormuud (EVC Plus)</span>
+                </div>
+                <div class="payment-method p-mpesa" onclick="withdraw('M-Pesa Kenya')">
+                    <i class="lucide-phone"></i>
+                    <span>M-Pesa Kenya</span>
+                </div>
+                <div class="payment-method p-card" onclick="withdraw('Visa / Mastercard')">
+                    <i class="lucide-credit-card"></i>
+                    <span>Visa / Mastercard</span>
+                </div>
+                <div class="payment-method p-paypal" onclick="withdraw('PayPal Express')">
+                    <i class="lucide-wallet"></i>
+                    <span>PayPal Express</span>
+                </div>
+                <div class="payment-method p-binance" onclick="withdraw('Binance Pay (USDT)')">
+                    <i class="lucide-coins"></i>
+                    <span>Binance Pay (USDT)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <div class="nav-item active">
+                <i class="lucide-home"></i>
+                <span>Gurigga</span>
+            </div>
+            <div class="nav-item" onclick="alert('Qaybtan dhawaan ayay diyaar noqon doontaa!')">
+                <i class="lucide-help-circle"></i>
+                <span>Giira</span>
+            </div>
+            <div class="nav-item" onclick="alert('Xogta akoonkaaga waa mid ammaan ah!')">
+                <i class="lucide-user"></i>
+                <span>Xogta</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let balance = 21.75;
+
+        function watchAd() {
+            alert("Xayeysiiskii wuxuu ku bilowday guul! Fadlan sug 30 ilbiriqsi...");
+            setTimeout(() => {
+                balance += 5.50;
+                document.getElementById('balance-text').innerText = "$" + balance.toFixed(2);
+                alert("Hambalyo! Waxaad kasbatay $5.50 maanta.");
+            }, 2000);
+        }
+
+        function withdraw(method) {
+            let amount = prompt(`Meqe ayaad rabtaa inaad kala baxdo iyadoo la isticmaalayo ${method}? (Ugu yaraan waa $10)`);
+            if (amount !== null) {
+                if (parseFloat(amount) >= 10 && parseFloat(amount) <= balance) {
+                    let number = prompt(`Ku qor lambarkaaga ama iimaylkaaga ${method} ee lacagta lagugu soo dirayo:`);
+                    if (number) {
+                        balance -= parseFloat(amount);
+                        document.getElementById('balance-text').innerText = "$" + balance.toFixed(2);
+                        alert(`Codsigaaga bixinta ee ${amount} waa la gudbiyey! Waxaa lagugu soo diri doonaa 24 saac gudahood.`);
+                    }
+                } else {
+                    alert("Kala bixiddu ma guulaysan. Hubi in hadhaagaagu kugu filan yahay ama inta aad qortay ay ka weyn tahay $10.");
+                }
+            }
+        }
+    </script>
+</body>
+</html>
