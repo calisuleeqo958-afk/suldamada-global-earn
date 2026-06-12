@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,11 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suldamada Global</title>
     <style>
-        body { background: #000; color: white; font-family: sans-serif; display: flex; justify-content: center; padding: 20px; }
-        .app-container { width: 100%; max-width: 400px; text-align: center; }
+        body { background: #000; color: white; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; padding: 20px; }
+        .app-container { width: 90%; max-width: 400px; text-align: center; }
         .balance-card { background: linear-gradient(135deg, #4f46e5, #ec4899); padding: 20px; border-radius: 15px; margin-bottom: 20px; }
-        button, input { width: 100%; padding: 15px; margin-bottom: 10px; border-radius: 8px; border: none; }
-        .btn-withdraw { background: #059669; color: white; font-weight: bold; }
+        .btn { width: 100%; padding: 18px; margin-bottom: 15px; border-radius: 8px; border: none; cursor: pointer; color: white; font-weight: bold; }
+        .btn-game { background: #2563eb; }
+        .btn-ad { background: #7c3aed; }
+        .btn-withdraw { background: #059669; }
+        input { width: 100%; padding: 18px; margin-bottom: 20px; border-radius: 8px; border: none; box-sizing: border-box; }
     </style>
 </head>
 <body>
@@ -19,11 +23,33 @@
             <p>Haraagaaga</p>
             <h2 id="balance">32.75</h2>
         </div>
+        
+        <button class="btn btn-game" onclick="playGame()">🎮 Play Game & Win $8.50</button>
+        <button class="btn btn-ad" onclick="watchAd()">📺 Watch Ad & Earn $5.50</button>
+        
         <input type="text" id="phone" placeholder="Geli lambarkaaga">
-        <button class="btn-withdraw" onclick="sendwithdraw()">Withdraw Balance</button>
+        <button class="btn btn-withdraw" onclick="sendwithdraw()">Withdraw Balance</button>
     </div>
 
     <script>
+    function playGame() {
+        alert("Ciyaartu way socotaa...");
+        setTimeout(() => {
+            let b = document.getElementById('balance');
+            b.innerText = (parseFloat(b.innerText) + 8.50).toFixed(2);
+            alert("Hambalyo! $8.50 ayaa laguugu daray!");
+        }, 2000);
+    }
+
+    function watchAd() {
+        alert("Xayaysiisku wuu socdaa...");
+        setTimeout(() => {
+            let b = document.getElementById('balance');
+            b.innerText = (parseFloat(b.innerText) + 5.50).toFixed(2);
+            alert("Hambalyo! $5.50 ayaa laguugu daray!");
+        }, 2000);
+    }
+
     function sendwithdraw() {
         const phone = document.getElementById('phone').value;
         const balance = document.getElementById('balance').innerText;
@@ -32,7 +58,7 @@
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ phone: phone, amount: balance })
         });
-        alert("Waa la diray!");
+        alert("Codsigaga Withdraw-ga waa la diray!");
     }
     </script>
 </body>
