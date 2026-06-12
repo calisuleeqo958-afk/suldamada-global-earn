@@ -1,15 +1,26 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suldamada Global</title>
+    <style>
+        body { background: #000; color: white; font-family: sans-serif; display: flex; justify-content: center; padding: 20px; }
+        .app-container { width: 100%; max-width: 400px; text-align: center; }
+        .balance-card { background: linear-gradient(135deg, #4f46e5, #ec4899); padding: 20px; border-radius: 15px; margin-bottom: 20px; }
+        button, input { width: 100%; padding: 15px; margin-bottom: 10px; border-radius: 8px; border: none; }
+        .btn-withdraw { background: #059669; color: white; font-weight: bold; }
+    </style>
 </head>
 <body>
     <div class="app-container">
         <h1>Suldamada Global</h1>
-        <p>Haraagaaga: <span id="balance">32.75</span></p>
+        <div class="balance-card">
+            <p>Haraagaaga</p>
+            <h2 id="balance">32.75</h2>
+        </div>
         <input type="text" id="phone" placeholder="Geli lambarkaaga">
-        <button onclick="sendwithdraw()">Withdraw Balance</button>
+        <button class="btn-withdraw" onclick="sendwithdraw()">Withdraw Balance</button>
     </div>
 
     <script>
